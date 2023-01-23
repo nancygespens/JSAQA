@@ -11,6 +11,7 @@ const { devices } = require('@playwright/test');
 /**
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
+ * 
  */
 const config = {
   testDir: './tests',
@@ -23,6 +24,7 @@ const config = {
      */
     timeout: 5000
   },
+  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
