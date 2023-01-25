@@ -1,5 +1,11 @@
 let page;
 
+beforeEach(async () => {
+  page = await browser.newPage();
+  // await page.setDefaultNavigationTimeout(180000);
+  jest.setTimeout(30000);
+});
+
 afterEach(() => {
   page.close();
 });
@@ -7,7 +13,6 @@ afterEach(() => {
 describe("Github page tests", () => {
 
 	beforeEach(async () => {
-  page = await browser.newPage();
   await page.goto("https://github.com/team");
 });
 
@@ -30,7 +35,7 @@ describe("Github page tests", () => {
       visible: true,
     });
     const actual = await page.$eval(btnSelector, link => link.textContent);
-    expect(actual).toContain("Get started with Team")
+    expect(actual).toContain("Get started with Team");
   }, 10000);
 });
 
@@ -39,7 +44,6 @@ describe("Github page tests", () => {
 describe("Github page tests issues", () => {
 
 	beforeEach(async () => {
-	  page = await browser.newPage();
 		await page.goto("https://github.com/features/issues");
 });
 
@@ -62,7 +66,6 @@ test("The h1 header content Issues", async () => {
 describe("Github page tests packages", () => {
 
 	beforeEach(async () => {
-	  page = await browser.newPage();
 		await page.goto("https://github.com/features/packages");
 });
 
@@ -79,13 +82,10 @@ test("The h1 header content Packages", async () => {
 describe("Github page tests pricing", () => {
 
 	beforeEach(async () => {
-    page = await browser.newPage();
 		await page.goto("https://github.com/pricing");
 });
 
 test("The h1 header content Pricing", async () => {
-	  page = await browser.newPage();
-		await page.goto("https://github.com/pricing");
     const firstLink = await page.$("header div div a");
 		await firstLink.click();
     await page.waitForSelector('h1');
