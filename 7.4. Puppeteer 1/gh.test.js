@@ -36,33 +36,52 @@ describe("Github page tests", () => {
 
 
 
-test("Video button text'", async () => {
+describe("Github page tests issues", () => {
+
+	beforeEach(async () => {
 	  page = await browser.newPage();
 		await page.goto("https://github.com/features/issues");
+});
+
+test("Video button text'", async () => {
 		const videoButton = "div.position-absolute.top-0.left-0.width-full.height-full.d-flex.flex-column.flex-justify-center.px-3.events-auto > div > details > summary";
     const firstLink = await page.$eval(videoButton, el => el.textContent);
     expect(firstLink).toContain('Watch video');
   }, 60000);
 
 test("The h1 header content Issues", async () => {
-	  page = await browser.newPage();
-		await page.goto("https://github.com/features/issues");
     const firstLink = await page.$("header div div a");
     await firstLink.click();
     await page.waitForSelector('h1');
     const title2 = await page.title();
     expect(title2).toEqual('GitHub Issues · Project planning for developers · GitHub');
   }, 60000);
+});
 
-test("The h1 header content Packages", async () => {
+
+describe("Github page tests packages", () => {
+
+	beforeEach(async () => {
 	  page = await browser.newPage();
 		await page.goto("https://github.com/features/packages");
+});
+
+test("The h1 header content Packages", async () => {
     const firstLink = await page.$("header div div a");
     await firstLink.click();
     await page.waitForSelector('h1');
     const title2 = await page.title();
     expect(title2).toEqual('GitHub Packages: Your packages, at home with their code · GitHub');
   }, 10000);
+});
+
+
+describe("Github page tests pricing", () => {
+
+	beforeEach(async () => {
+    page = await browser.newPage();
+		await page.goto("https://github.com/pricing");
+});
 
 test("The h1 header content Pricing", async () => {
 	  page = await browser.newPage();
@@ -73,3 +92,4 @@ test("The h1 header content Pricing", async () => {
     const title2 = await page.title();
     expect(title2).toEqual('Pricing · Plans for every developer · GitHub');
 }, 20000);
+});
