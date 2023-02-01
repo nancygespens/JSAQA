@@ -34,15 +34,15 @@ Cypress.Commands.add('login', (login, password) => {
     cy.contains('Submit').click();
   });
   
-  Cypress.Commands.add('addBook', (title, description, coverPath, filePath, author, favorite) => {
+  Cypress.Commands.add('addBook', (title, description, author, favorite) => {
     cy.contains('Add new').click();
     cy.get('#title').type(title);
     cy.get('#description').type(description);
-    cy.get('#fileCover').selectFile(coverPath, { action: 'drag-drop' });
-    cy.get('#fileBook').selectFile(filePath, { action: 'drag-drop' });
     cy.get('#authors').type(author);
     if (favorite) {
       cy.get('.form-check-label').dblclick();
     }
     cy.contains('Submit').click();
   });
+
+  
