@@ -8,7 +8,7 @@ it("Should show correct number of days", () => {
 it("Should be possible to book", () => {
   cy.visit("qamid.tmweb.ru");
   cy.get("a.page-nav__day:nth-of-type(5)").click();
-  cy.get(".movie").first().contains("19:00").click();
+  cy.get(".movie").first().contains("12:00").click();
   const seats = require("../fixtures/seats.json");
   seats.forEach((seat) => {
     cy.get(

@@ -18,7 +18,7 @@ it("Should be create and delete hall", () => {
 it("Should booking tickets", () => {
     cy.visit("http://qamid.tmweb.ru");
     cy.get(booking.selectDay).click();
-    cy.get(".movie").first().contains("00:00").click();
+    cy.get(".movie").first().contains("21:00").click();
     seats.forEach((seat) => {
         cy.get(
           `.buying-scheme__wrapper > :nth-child(${seat.row}) > :nth-child(${seat.seat})`
