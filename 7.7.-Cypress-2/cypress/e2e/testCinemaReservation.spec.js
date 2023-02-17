@@ -16,9 +16,18 @@ it("Should be create and delete hall", () => {
    
 });
 it("Should booking tickets", () => {
-    cy.visit("http://qamid.tmweb.ru");
+    cy.visit("http://qamid.tmweb.ru/admin");
+    cy.get(login.loginField).type(login.login);
+    cy.get(login.pwdField).type(login.password);
+    cy.get(login.loginButton).click();
+    cy.get(booking.activeFilmInAdmin).then(($film) => {
+    const filmName = $film.text();
+    cy.visit("http://qamid.tmweb.ru/client/index.php");
     cy.get(booking.selectDay).click();
-    cy.get(".movie").first().contains("21:00").click();
+    cy.get(booking.movie)
+      .contains(filmName)
+      .get(booking.filmSession)
+      .click();
     seats.forEach((seat) => {
         cy.get(
           `.buying-scheme__wrapper > :nth-child(${seat.row}) > :nth-child(${seat.seat})`
@@ -26,5 +35,6 @@ it("Should booking tickets", () => {
     });
     cy.get(booking.acceptSeat).click();
     cy.contains("Вы выбрали билеты:").should("be.visible");
+   });
 
 });
